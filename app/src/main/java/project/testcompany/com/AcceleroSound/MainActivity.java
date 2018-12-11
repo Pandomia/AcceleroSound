@@ -231,6 +231,8 @@ public class MainActivity extends Activity implements SensorEventListener {
             }
             mPaint.setColor(color);
 
+            canvas.drawColor(Color.GREEN);
+
             Log.d(getClass().getName(), "value x = " + x);
 
             Log.d(getClass().getName(), "value y = " + y);
