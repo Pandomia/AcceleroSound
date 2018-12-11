@@ -168,8 +168,8 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
 
         public void onSensorEvent (SensorEvent event) {
-            x = x -  (int) event.values[0]/* *5*/;
-            y = y + (int) event.values[1]/* *5*/;
+            x = x -  (int) event.values[0] *5;
+            y = y + (int) event.values[1] *5;
 
 
 
@@ -178,6 +178,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             if (x <= 0 + CIRCLE_RADIUS) {
                 color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
+                ring.start();
 
                 x = 0 + CIRCLE_RADIUS;
                 x+=150;
@@ -186,6 +187,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             if (x >= viewWidth - CIRCLE_RADIUS) {
                 color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
+                ring.start();
 
                 x = viewWidth - CIRCLE_RADIUS;
                 x-=150;
@@ -195,7 +197,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             if (y <= 0 + CIRCLE_RADIUS) {
                 color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
-
+                ring.start();
                 y = 0 + CIRCLE_RADIUS;
                 y +=150;
 
@@ -204,6 +206,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             if (y >= viewHeight - CIRCLE_RADIUS) {
                 color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
+                ring.start();
 
                 y = viewHeight - CIRCLE_RADIUS;
 
@@ -232,7 +235,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             SensorEvent sensorEvent = null;
            // 30<(int)sensorEvent.values[0]
             if(300<x){
-                ring.start();
+               // ring.start();
             }
             if(y<60 ){
 
