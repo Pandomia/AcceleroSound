@@ -103,6 +103,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     @Override
     protected void onResume() {
         super.onResume();
+        mAnimatedView.ResetBall();
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
     }
 
@@ -150,6 +151,11 @@ public class MainActivity extends Activity implements SensorEventListener {
         }
 
 
+        public void ResetBall()
+        {
+            x = viewWidth/2;
+            y = viewHeight/2;
+        }
 
 
         @Override
@@ -157,6 +163,8 @@ public class MainActivity extends Activity implements SensorEventListener {
             super.onSizeChanged(w, h, oldw, oldh);
             viewWidth = w;
             viewHeight = h;
+            ResetBall();
+
         }
 
         public void onSensorEvent (SensorEvent event) {
@@ -231,7 +239,7 @@ public class MainActivity extends Activity implements SensorEventListener {
             }
             mPaint.setColor(color);
 
-            canvas.drawColor(Color.GREEN);
+            //canvas.drawColor(Color.GREEN);
 
             Log.d(getClass().getName(), "value x = " + x);
 
