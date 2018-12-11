@@ -12,10 +12,13 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.support.v7.widget.Toolbar;
+import android.app.ActionBar;
 
 import java.util.Random;
 
@@ -37,6 +40,10 @@ public class MainActivity extends Activity implements SensorEventListener {
         ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
 
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        
+
+
 
         //final Button button = findViewById(R.id.button);
        /* button.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +80,8 @@ public class MainActivity extends Activity implements SensorEventListener {
             stopGame();
         } else {
             super.onBackPressed();
-        }*/
+        }*/ //FRAGMENTS <-----!!!!
+
 
         onPause();
         setContentView(R.layout.activity_main);
@@ -185,7 +193,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
 
             }
-            float lol = 1;
             if (y >= viewHeight - CIRCLE_RADIUS) {
                 color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
