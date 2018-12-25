@@ -12,26 +12,30 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.support.v7.widget.Toolbar;
 import android.app.ActionBar;
+import android.widget.Toast;
 
 import java.util.Random;
 
 import project.testcompany.com.test1.R;
 
-public class MainActivity extends Activity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SensorEventListener {
 
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
-   // final Button button = findViewById(R.id.button);
     private AnimatedView mAnimatedView = null;
     MediaPlayer ring;
     private DrawerLayout drawer;
@@ -48,6 +52,9 @@ public class MainActivity extends Activity implements SensorEventListener {
         Toolbar toolbar = findViewById(R.id.toolbar);
         
         drawer = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -65,20 +72,45 @@ public class MainActivity extends Activity implements SensorEventListener {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
 
-
         mAnimatedView = new AnimatedView(this);
+
+
+        if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new SettingsFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_settings);
+        }
         //View veranderen naar animated
         //setContentView(mAnimatedView);
+
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new SettingsFragment()).commit();
+                break;
+
+            case R.id.test_set:
+                Toast.makeText(this,"Test",Toast.LENGTH_SHORT).show();
+                break;
 
 
-
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
     @Override
     public void onBackPressed() {

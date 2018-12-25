@@ -7,15 +7,19 @@
 
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_message"
+        <item android:id="@+id/nav_main"
             android:icon="@drawable/ic_test"
-            android:title="Test"></item>
+            android:title="Hoofdmenu"></item>
+        <item android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_test"
+            android:title="Settings"></item>
+
 
     </group>
 
     <item android:title="Communicate">
         <menu>
-            <item android:id="@+id/design_navigation_view"
+            <item android:id="@+id/test_set"
                 android:icon="@drawable/ic_test"
                 android:title="Test"></item>
         </menu>
