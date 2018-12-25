@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mAnimatedView = new AnimatedView(this);
         mAnimatedView.ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
-        mAnimatedView.DeathSound = MediaPlayer.create(MainActivity.this ,R.raw.Roblox);
+        mAnimatedView.DeathSound = MediaPlayer.create(MainActivity.this ,R.raw.roblox);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

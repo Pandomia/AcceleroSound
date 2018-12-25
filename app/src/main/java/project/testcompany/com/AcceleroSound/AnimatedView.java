@@ -96,7 +96,7 @@ class AnimatedView extends View {
         if (x >= viewWidth - CIRCLE_RADIUS) {
             color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
-            //ring.start();
+            ring.start();
 
             x = viewWidth - CIRCLE_RADIUS;
             x-=150;
@@ -106,7 +106,7 @@ class AnimatedView extends View {
         if (y <= 0 + CIRCLE_RADIUS) {
             color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
-           // ring.start();
+            ring.start();
             y = 0 + CIRCLE_RADIUS;
             y +=150;
 
@@ -115,7 +115,7 @@ class AnimatedView extends View {
         if (y >= viewHeight - CIRCLE_RADIUS) {
             color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
-            //ring.start();
+            ring.start();
 
             y = viewHeight - CIRCLE_RADIUS;
 
@@ -162,6 +162,7 @@ class AnimatedView extends View {
 
 
         canvas.drawCircle(x, y, CIRCLE_RADIUS, mPaint);
+
         //We need to call invalidate each time, so that the view continuously draws
 
         //canvas.drawLine();
