@@ -37,26 +37,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private AnimatedView mAnimatedView = null;
-    MediaPlayer ring;
-    private DrawerLayout drawer;
 
+    private DrawerLayout drawer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
+
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        
+
         drawer = findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
-                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -79,9 +78,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         mAnimatedView = new AnimatedView(this);
+        mAnimatedView.ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
+        mAnimatedView.DeathSound = MediaPlayer.create(MainActivity.this ,R.raw.Roblox);
 
-
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new SettingsFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_settings);
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.nav_settings:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.test_set:
-                Toast.makeText(this,"Test",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
                 break;
 
 
@@ -123,10 +123,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }*/ //FRAGMENTS <-----!!!!
 
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else{
+        } else {
             super.onBackPressed();
         }
 
@@ -135,16 +134,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //setContentView(R.layout.activity_main);
 
 
-
-
-
     }
 
-    public void onClickBtn(View v)
-    {
+    public void onClickBtn(View v) {
         //ring.start();
-       onResume();
-         setContentView(mAnimatedView);
+        onResume();
+        setContentView(mAnimatedView);
     }
 
 
@@ -153,6 +148,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         mAnimatedView.ResetBall();
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
+
+
+
+
     }
 
     @Override
@@ -162,7 +161,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onAccuracyChanged(Sensor arg0, int arg1) { }
+    public void onAccuracyChanged(Sensor arg0, int arg1) {
+    }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -173,142 +173,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
-
-    public class AnimatedView extends View {
-
-        private static final int CIRCLE_RADIUS = 50; //pixels, grootte van cirkel
-
-        private Paint mPaint;
-        private int x;
-        private int y;
-        private int viewWidth;
-        private int viewHeight;
-        private int color = Color.RED;
-
-        private Random rnd = new Random();
-
-        public AnimatedView(Context context) {
-            super(context);
-
-
-            mPaint = new Paint();
-            mPaint.setColor(color/*Color.RED*/); //Cirkel kleur
-
-
-        }
-
-
-        public void ResetBall()
-        {
-            x = viewWidth/2;
-            y = viewHeight/2;
-        }
-
-
-        @Override
-        protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-            super.onSizeChanged(w, h, oldw, oldh);
-            viewWidth = w;
-            viewHeight = h;
-            ResetBall();
-
-        }
-
-        public void onSensorEvent (SensorEvent event) {
-            x = x -  (int) event.values[0] *5;
-            y = y + (int) event.values[1] *5;
-
-
-
-
-
-            if (x <= 0 + CIRCLE_RADIUS) {
-                color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-                ring.start();
-
-                x = 0 + CIRCLE_RADIUS;
-                x+=150;
-
-            }
-            if (x >= viewWidth - CIRCLE_RADIUS) {
-                color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-                ring.start();
-
-                x = viewWidth - CIRCLE_RADIUS;
-                x-=150;
-
-
-            }
-            if (y <= 0 + CIRCLE_RADIUS) {
-                color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-                ring.start();
-                y = 0 + CIRCLE_RADIUS;
-                y +=150;
-
-
-            }
-            if (y >= viewHeight - CIRCLE_RADIUS) {
-                color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-                ring.start();
-
-                y = viewHeight - CIRCLE_RADIUS;
-
-                y -=150;
-
-
-
-               // y = (int)10f;
-
-               // y = y * 10;
-
-                /*for(int i = 0; i < 500; i++){
-
-                    y;
-                }*/
-                //y-=100;
-
-
-            }
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-
-            SensorEvent event;
-            SensorEvent sensorEvent = null;
-           // 30<(int)sensorEvent.values[0]
-            if(300<x){
-               // ring.start();
-            }
-            if(y<60 ){
-
-            }
-            mPaint.setColor(color);
-
-            //canvas.drawColor(Color.GREEN);
-
-            Log.d(getClass().getName(), "value x = " + x);
-
-            Log.d(getClass().getName(), "value y = " + y);
-
-
-            canvas.drawCircle(x, y, CIRCLE_RADIUS, mPaint);
-            //We need to call invalidate each time, so that the view continuously draws
-
-            //Invalidate zodat het "loopt"
-            invalidate();
-
-
-
-
-        }
-
-
-
-    }
 }
+
+
