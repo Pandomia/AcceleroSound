@@ -12,6 +12,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +34,8 @@ public class MainActivity extends Activity implements SensorEventListener {
    // final Button button = findViewById(R.id.button);
     private AnimatedView mAnimatedView = null;
     MediaPlayer ring;
+    private DrawerLayout drawer;
+
 
 
     @Override
@@ -42,7 +47,11 @@ public class MainActivity extends Activity implements SensorEventListener {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         
-
+        drawer = findViewById(R.id.drawerLayout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,
+                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
 
         //final Button button = findViewById(R.id.button);
@@ -82,9 +91,16 @@ public class MainActivity extends Activity implements SensorEventListener {
             super.onBackPressed();
         }*/ //FRAGMENTS <-----!!!!
 
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        else{
+            super.onBackPressed();
+        }
 
-        onPause();
-        setContentView(R.layout.activity_main);
+        //Back press fixen
+        //onPause();
+        //setContentView(R.layout.activity_main);
 
 
 
