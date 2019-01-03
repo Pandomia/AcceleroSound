@@ -67,6 +67,40 @@ class AnimatedView extends View {
             DeathSound.start();
     }
 
+    private void CheckCorners()
+    {
+        if(x <=0){
+            x = 0 + CIRCLE_RADIUS;
+                /*for(int i = 0;i < 151;i++)
+                {
+                    x+=i;
+                }*/
+        }
+        if(y<=0)
+        {
+            y = 0 + CIRCLE_RADIUS;
+                /*for(int i = 0;i < 151;i++)
+                {
+                    y+=i;
+                }*/
+        }
+        if(x >=viewWidth){
+            x = viewWidth - CIRCLE_RADIUS;
+                /*for(int i = 0;i < 151;i++)
+                {
+                    x+=i;
+                }*/
+        }
+        if(y >=viewHeight)
+        {
+            y = viewHeight - CIRCLE_RADIUS;
+                /*for(int i = 0;i < 151;i++)
+                {
+                    y+=i;
+                }*/
+        }
+    }
+
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
@@ -81,14 +115,35 @@ class AnimatedView extends View {
         y = y + (int) event.values[1] *5;
 
 
+        if(x == viewHeight/2 && y == viewHeight/2) {
+            ring.stop();
+            DeathSound.stop();
+        }
+        if(x > viewWidth && y > viewHeight) {
+            ring.start();
+            CheckCorners();
+
+        }
+        if (x < viewWidth && y > viewHeight) {
+            DeathSound.start();
+            CheckCorners();
+        }
+        if(x < viewWidth && y < viewHeight) {
+            ring.start();
+            CheckCorners();
+        }
+        if(x > viewWidth && y < viewHeight){
+            DeathSound.start();
+            CheckCorners();
+        }
 
 
 
-        if (x <= 0 + CIRCLE_RADIUS) {
-            color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+       /* if (x <= 0 + CIRCLE_RADIUS) {
+
 
             //ring.start();
-
+            color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
             x = 0 + CIRCLE_RADIUS;
             x+=150;
 
@@ -99,7 +154,7 @@ class AnimatedView extends View {
             ring.start();
 
             x = viewWidth - CIRCLE_RADIUS;
-            x-=150;
+            x-  =150;
 
 
         }
@@ -119,7 +174,7 @@ class AnimatedView extends View {
 
             y = viewHeight - CIRCLE_RADIUS;
 
-            y -=150;
+            y -=150;*/
 
 
 
@@ -134,7 +189,7 @@ class AnimatedView extends View {
             //y-=100;
 
 
-        }
+      //  }
     }
 
     @Override
