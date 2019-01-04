@@ -50,8 +50,10 @@ class AnimatedView extends View {
         y = viewHeight/2;
     }
 
-    public void PlaySound()
+    private void PlaySound()
     {
+
+        //word niet gebruikt
         if(x == viewHeight/2 && y == viewHeight/2) {
             ring.stop();
             DeathSound.stop();
@@ -70,7 +72,7 @@ class AnimatedView extends View {
     private void CheckCorners()
     {
         if(x <=0){
-            x = 0 + CIRCLE_RADIUS;
+            x = 0 + CIRCLE_RADIUS ;
                 /*for(int i = 0;i < 151;i++)
                 {
                     x+=i;
@@ -119,20 +121,20 @@ class AnimatedView extends View {
             ring.stop();
             DeathSound.stop();
         }
-        if(x > viewWidth && y > viewHeight) {
+        if(x > viewWidth/2 && y > viewHeight/2) {
             ring.start();
             CheckCorners();
 
         }
-        if (x < viewWidth && y > viewHeight) {
+        if (x < viewWidth/2 && y > viewHeight/2) {
             DeathSound.start();
             CheckCorners();
         }
-        if(x < viewWidth && y < viewHeight) {
+        if(x < viewWidth/2 && y < viewHeight/2) {
             ring.start();
             CheckCorners();
         }
-        if(x > viewWidth && y < viewHeight){
+        if(x > viewWidth/2 && y < viewHeight/2){
             DeathSound.start();
             CheckCorners();
         }
