@@ -81,25 +81,16 @@ class AnimatedView extends View {
         if(y<=0)
         {
             y = 0 + CIRCLE_RADIUS;
-                /*for(int i = 0;i < 151;i++)
-                {
-                    y+=i;
-                }*/
+
         }
         if(x >=viewWidth){
             x = viewWidth - CIRCLE_RADIUS;
-                /*for(int i = 0;i < 151;i++)
-                {
-                    x+=i;
-                }*/
+
         }
         if(y >=viewHeight)
         {
             y = viewHeight - CIRCLE_RADIUS;
-                /*for(int i = 0;i < 151;i++)
-                {
-                    y+=i;
-                }*/
+
         }
     }
 
