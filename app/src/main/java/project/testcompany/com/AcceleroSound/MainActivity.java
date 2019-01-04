@@ -16,6 +16,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -34,13 +36,14 @@ import java.util.Random;
 
 import project.testcompany.com.test1.R;
 
+
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener/*,NavigationView.OnNavigationItemSelectedListener*/ {
 
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private AnimatedView mAnimatedView = null;
-
-    private DrawerLayout drawer;
+    public boolean inanimation = false;
 
 
     @Override
@@ -48,10 +51,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new HomeFragment()).commit();
 
 
         /*//Toolbar toolbar = findViewById(R.id.toolbar);
@@ -105,17 +109,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item){
 
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
                 Fragment selectedFragment = null;
                 switch (item.getItemId()){
                     case R.id.nav_home:
+                       // transaction.replace(R.id.fragment_container,new HomeFragment()).commit();
                         selectedFragment = new HomeFragment();
+
                         break;
 
                     case R.id.nav_settings:
-                        selectedFragment = new HomeFragment();
+                       // transaction.replace(R.id.fragment_container,new HomeFragment()).commit();
+
+                        selectedFragment = new SettingsFragment();
+                       // setContentView(R.layout.fragment_settings);
+
                         break;
                     case R.id.nav_about:
-                        selectedFragment = new HomeFragment();
+                        selectedFragment = new SettingsFragment();
                         break;
                 }
 
@@ -153,6 +165,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //Back knop
 
+        if(inanimation == true){
+            onPause();
+
+        }
+        else{
+            super.onBackPressed();
+        }
+
        /* if (gamePlaying) {
             stopGame();
         } else {
@@ -164,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } else {
             super.onBackPressed();
         }*/
-        super.onBackPressed();
+      //  super.onBackPressed();
 
         //Back press fixen
         //onPause();
@@ -180,10 +200,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
 
+
     @Override
     protected void onResume() {
         super.onResume();
         mAnimatedView.ResetBall();
+        inanimation = true;
+        
+
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
 
 
@@ -193,8 +217,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     protected void onPause() {
+
         super.onPause();
         mSensorManager.unregisterListener(this);
+        setContentView(R.layout.activity_main);
+        inanimation = false;
+
     }
 
     @Override

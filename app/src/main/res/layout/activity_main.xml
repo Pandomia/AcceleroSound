@@ -111,28 +111,10 @@ tools:context="project.testcompany.com.AcceleroSound.MainActivity">
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"
 
-        />
-<Button
-    android:id="@+id/button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="8dp"
-    android:layout_marginTop="8dp"
-    android:onClick="onClickBtn"
-    android:text="Button"
-    android:background="@drawable/buttonstyle"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-<android.support.design.widget.NavigationView
-    android:layout_width="132dp"
-    android:layout_height="495dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:visibility="gone"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </android.support.constraint.ConstraintLayout>
