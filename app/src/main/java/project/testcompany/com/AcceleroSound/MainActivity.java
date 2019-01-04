@@ -13,7 +13,9 @@ import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -32,7 +34,7 @@ import java.util.Random;
 
 import project.testcompany.com.test1.R;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SensorEventListener {
+public class MainActivity extends AppCompatActivity implements SensorEventListener/*,NavigationView.OnNavigationItemSelectedListener*/ {
 
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
@@ -44,20 +46,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
 
-        drawer = findViewById(R.id.drawerLayout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+
+
+        /*//Toolbar toolbar = findViewById(R.id.toolbar);
+        //drawer = findViewById(R.id.drawerLayout);
+        //NavigationView navigationView = findViewById(R.id.nav_view);
+        //navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
 
 
         //final Button button = findViewById(R.id.button);
@@ -68,10 +73,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });*/
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        */
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -81,17 +86,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mAnimatedView.ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
         mAnimatedView.DeathSound = MediaPlayer.create(MainActivity.this ,R.raw.roblox);
 
+
+
+
+/*
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new SettingsFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_settings);
-        }
+        }*/
         //View veranderen naar animated
         //setContentView(mAnimatedView);
 
     }
 
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener(){
+            @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item){
 
+                Fragment selectedFragment = null;
+                switch (item.getItemId()){
+                    case R.id.nav_home:
+                        selectedFragment = new HomeFragment();
+                        break;
+
+                    case R.id.nav_settings:
+                        selectedFragment = new HomeFragment();
+                        break;
+                    case R.id.nav_about:
+                        selectedFragment = new HomeFragment();
+                        break;
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
+                return true;
+            }
+
+            };
+
+/*
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -103,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.test_set:
+                setContentView(mAnimatedView);
                 Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -110,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -122,12 +158,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }*/ //FRAGMENTS <-----!!!!
-
+/*
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
+        super.onBackPressed();
 
         //Back press fixen
         //onPause();

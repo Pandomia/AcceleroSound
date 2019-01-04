@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.hardware.SensorEvent;
 import android.media.MediaPlayer;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 
@@ -171,18 +172,18 @@ class AnimatedView extends View {
 
 
 
-            // y = (int)10f;
+        // y = (int)10f;
 
-            // y = y * 10;
+        // y = y * 10;
 
                 /*for(int i = 0; i < 500; i++){
 
                     y;
                 }*/
-            //y-=100;
+        //y-=100;
 
 
-      //  }
+        //  }
     }
 
     @Override
