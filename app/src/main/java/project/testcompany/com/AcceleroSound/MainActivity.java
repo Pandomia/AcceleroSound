@@ -30,6 +30,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.support.v7.widget.Toolbar;
 import android.app.ActionBar;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -93,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
+
+
 /*
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -103,6 +107,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //setContentView(mAnimatedView);
 
     }
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -200,13 +206,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
         mAnimatedView.ResetBall();
         inanimation = true;
-        
+
 
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
 
@@ -220,7 +225,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         super.onPause();
         mSensorManager.unregisterListener(this);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
+
         inanimation = false;
 
     }
