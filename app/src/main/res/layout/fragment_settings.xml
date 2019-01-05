@@ -28,7 +28,7 @@
         android:layout_toEndOf="@+id/seektext"
         android:max="10"
         android:min="1"
-        android:progress="50" />
+        android:progress="5" />
 
 
 </RelativeLayout>

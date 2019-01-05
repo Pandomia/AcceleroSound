@@ -14,7 +14,7 @@ import org.w3c.dom.Text;
 
 import project.testcompany.com.test1.R;
 
-public class SettingsFragment extends Fragment implements AnimatedView.xPos {
+public class SettingsFragment extends Fragment{
     TextView textView;
     SeekBar seekBar;
 
