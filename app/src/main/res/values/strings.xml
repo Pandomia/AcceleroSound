@@ -2,5 +2,7 @@
     <string name="app_name">Test1</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="Start_Button">Start</string>
+    <string name="Velocity_Slider_TextView">Velocity</string>
 
 </resources>

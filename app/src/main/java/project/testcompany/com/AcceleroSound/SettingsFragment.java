@@ -18,6 +18,9 @@ public class SettingsFragment extends Fragment{
     TextView textView;
     SeekBar seekBar;
 
+    int min = 0, max = 80, current = 40;
+    //int CurrentVelocity = getResources().getInteger(R.integer.VelocitySpeed);
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +35,21 @@ public class SettingsFragment extends Fragment{
         textview = (TextView) view.findViewById(R.id.seektext);
 
         seekBar.setOnSeekBarChangeListener(this);*/
+
+
         textView =  (TextView) view.findViewById(R.id.seektext);
         seekBar =  (SeekBar) view.findViewById(R.id.seekBar);
+        seekBar.setMax(max - min);
+        seekBar.setProgress(current);
+        textView.setText(""+current);
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                textView.setText(""+String.valueOf(progress));
+                current = progress + min;
+                textView.setText(""+ current);
+                //textView.setText(""+String.valueOf(progress));
+
             }
 
             @Override

@@ -9,7 +9,7 @@
    </gradient>
 
     <corners
-        android:radius="35dp">
+        android:radius="10dp">
     </corners>
     <stroke android:color="	#FFFFFF"
         android:width="5dp">

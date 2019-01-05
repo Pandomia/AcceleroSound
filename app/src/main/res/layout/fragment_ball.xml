@@ -12,6 +12,7 @@
         android:layout_marginBottom="8dp"
         android:onClick="onClickBtn"
         android:text="Button"
-         />
+
+        />
 
 </android.support.constraint.ConstraintLayout>
