@@ -30,5 +30,28 @@
         android:min="1"
         android:progress="5" />
 
+    <Button
+        android:id="@+id/Color_Picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBar"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="165dp"
+        android:text="Button" />
+
+    <FrameLayout
+        android:id="@+id/Layout"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_below="@+id/seekBar"
+        android:layout_alignBottom="@+id/Color_Picker"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="154dp"
+        android:layout_marginBottom="-4dp">
+
+    </FrameLayout>
+
 
 </RelativeLayout>
