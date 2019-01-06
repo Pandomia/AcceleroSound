@@ -13,9 +13,20 @@ import android.view.View;
 
 import java.util.Random;
 
-class AnimatedView extends View {
+class AnimatedView extends View implements SettingsFragment.Settings{
 
-    private static final int CIRCLE_RADIUS = 50; //pixels, grootte van cirkel
+    /*int isize;
+
+    public int getIsize() {
+        return isize;
+    }
+
+    public void setIsize() {
+
+        this.isize = SettingsFragment.Settings.isize;
+    }*/
+
+    int CIRCLE_RADIUS = SettingsFragment.Settings.isize; //50; //pixels, grootte van cirkel
 
     private Paint mPaint;
     private Paint LinePaint;
@@ -23,12 +34,20 @@ class AnimatedView extends View {
     private int y; //y location of the ball
     private int viewWidth;
     private int viewHeight;
-    private int color = Color.RED;
+    private int color = SettingsFragment.Settings.icolor;//Color.RED;
     private boolean Start = false;
     public MediaPlayer ring;
     public MediaPlayer DeathSound;
 
     private Random rnd = new Random();
+/*
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }*/
 
     public AnimatedView(Context context) {
         super(context);
@@ -43,6 +62,8 @@ class AnimatedView extends View {
 
 
     }
+
+
 
 
     public void ResetBall()

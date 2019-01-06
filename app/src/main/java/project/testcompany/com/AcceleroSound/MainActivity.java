@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //View veranderen naar animated
         //setContentView(mAnimatedView);
 
+        //SettingsFragment sharedpref = android.support.v7.preference.Preference
+
     }
 
 
