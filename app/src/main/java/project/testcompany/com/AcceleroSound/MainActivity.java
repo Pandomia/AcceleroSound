@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             {
                 sb.append(text);
             }
-
+            //Log.e("fuq",text);
             Log.e("Button STart Clickeed", sb.toString());
             mAnimatedView.CIRCLE_RADIUS = Integer.valueOf(sb.toString());
 
