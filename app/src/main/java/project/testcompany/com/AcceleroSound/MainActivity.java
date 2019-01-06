@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private AnimatedView mAnimatedView = null;
-    public boolean inanimation = false;
+   // public  boolean  inanimation = false;
 
 
     @Override
@@ -55,48 +55,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        CallNav();
 
-
-
-
-        /*//Toolbar toolbar = findViewById(R.id.toolbar);
-        //drawer = findViewById(R.id.drawerLayout);
-        //NavigationView navigationView = findViewById(R.id.nav_view);
-        //navigationView.setNavigationItemSelectedListener(this);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();*/
-
-
-        //final Button button = findViewById(R.id.button);
-       /* button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(mAnimatedView);
-            }
-        });*/
 
         /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         */
+
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
+        mSensorManager.unregisterListener(this);
 
         mAnimatedView = new AnimatedView(this);
+        CallNav();
+
         mAnimatedView.ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
         mAnimatedView.DeathSound = MediaPlayer.create(MainActivity.this ,R.raw.roblox);
 
-
-
-
-
-
+        //Log.e("inanimation",(String.valueOf(mAnimatedView.inanimation)));
+        //Log.e("y-as",(String.valueOf(AnimatedView.y)));
 /*
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -122,16 +99,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Fragment selectedFragment = null;
                 switch (item.getItemId()){
                     case R.id.nav_home:
-                       // transaction.replace(R.id.fragment_container,new HomeFragment()).commit();
                         selectedFragment = new HomeFragment();
-
                         break;
 
                     case R.id.nav_settings:
-                       // transaction.replace(R.id.fragment_container,new HomeFragment()).commit();
-
                         selectedFragment = new SettingsFragment();
-                       // setContentView(R.layout.fragment_settings);
 
                         break;
                     case R.id.nav_about:
@@ -146,37 +118,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
             };
 
-/*
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-
-            case R.id.nav_settings:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new SettingsFragment()).commit();
-                break;
-
-            case R.id.test_set:
-                setContentView(mAnimatedView);
-                Toast.makeText(this, "Test", Toast.LENGTH_SHORT).show();
-                break;
-
-
-        }
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }*/
 
     public void CallNav(){
-
-
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
-
 
     }
 
@@ -185,38 +133,33 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //Back knop
 
-        if(inanimation == true){
+        if(mAnimatedView.inanimation == true){
+            mAnimatedView.inanimation = false;
+
             onPause();
 
+
         }
-        else{
+        else if(mAnimatedView.inanimation == false){
             super.onBackPressed();
         }
 
-       /* if (gamePlaying) {
+       /* if (gamePlaying) { //Idee om Back te fixen
             stopGame();
         } else {
             super.onBackPressed();
         }*/ //FRAGMENTS <-----!!!!
-/*
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }*/
-      //  super.onBackPressed();
 
-        //Back press fixen
-        //onPause();
-        //setContentView(R.layout.activity_main);
+
 
 
     }
 
     public void onClickBtn(View v) {
-        //ring.start();
+        mAnimatedView.inanimation = true;
         onResume();
         setContentView(mAnimatedView);
+
     }
 
 
@@ -224,27 +167,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onResume() {
         super.onResume();
         mAnimatedView.ResetBall();
-        inanimation = true;
-
-
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
-
-
-
-
     }
 
     @Override
     protected void onPause() {
-
         super.onPause();
         mSensorManager.unregisterListener(this);
         setContentView(R.layout.activity_main);
-        //getSupportFragmentManager().beginTransaction();
         CallNav();
 
 
-        inanimation = false;
+
 
     }
 

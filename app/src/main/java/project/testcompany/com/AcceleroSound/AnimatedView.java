@@ -30,12 +30,13 @@ class AnimatedView extends View implements SettingsFragment.Settings{
 
     private Paint mPaint;
     private Paint LinePaint;
-    private int x; //x location of the ball
-    private int y; //y location of the ball
+    static public int x; //x location of the ball
+    static public int y; //y location of the ball
     private int viewWidth;
     private int viewHeight;
     private int color = SettingsFragment.Settings.icolor;//Color.RED;
     private boolean Start = false;
+    public boolean inanimation = false;
     public MediaPlayer ring;
     public MediaPlayer DeathSound;
 
@@ -112,7 +113,6 @@ class AnimatedView extends View implements SettingsFragment.Settings{
         if(y >=viewHeight)
         {
             y = viewHeight - CIRCLE_RADIUS;
-
         }
     }
 
@@ -122,7 +122,6 @@ class AnimatedView extends View implements SettingsFragment.Settings{
         viewWidth = w;
         viewHeight = h;
         ResetBall();
-
     }
 
     public void onSensorEvent (SensorEvent event) {
@@ -134,22 +133,30 @@ class AnimatedView extends View implements SettingsFragment.Settings{
             ring.stop();
             DeathSound.stop();
         }
-        if(x > viewWidth/2 && y > viewHeight/2) {
+        if(inanimation==false){
+            //Doe niets
+        }
+
+        else if(x > viewWidth/2 && y > viewHeight/2) {
+
+            ring.start();
+            CheckCorners();
+            //Log.e("speel","1");
+        }
+        else if (x < viewWidth/2 && y > viewHeight/2) {
+            DeathSound.start();
+            CheckCorners();
+            //Log.e("speel","2");
+        }
+        else if(x < viewWidth/2 && y < viewHeight/2) {
             ring.start();
             CheckCorners();
 
         }
-        if (x < viewWidth/2 && y > viewHeight/2) {
+        else if(x > viewWidth/2 && y < viewHeight/2){
             DeathSound.start();
             CheckCorners();
-        }
-        if(x < viewWidth/2 && y < viewHeight/2) {
-            ring.start();
-            CheckCorners();
-        }
-        if(x > viewWidth/2 && y < viewHeight/2){
-            DeathSound.start();
-            CheckCorners();
+            //Log.e("speel","4");
         }
 
 
