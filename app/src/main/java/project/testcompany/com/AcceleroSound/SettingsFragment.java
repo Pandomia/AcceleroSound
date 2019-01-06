@@ -36,19 +36,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     static int color = Color.BLUE;
 
-    ConstraintLayout mLayout;
-    int mDefaultColor;
-    Button ButtonColor;
-
 
 
     // AnimatedView lol = new AnimatedView();
     //lol.
-    public interface Settings{
+    public interface Settings {
         int isize = size;
         int icolor = color;
-   }
+    }
 /*
+3
+
     @SuppressLint("ValidFragment")
     public SettingsFragment (Context context){
         this.context = context;
@@ -75,16 +73,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_settings,container,false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
 
-       Button btn1 = (Button) view.findViewById(R.id.Size_Picker);
+        Button btn1 = (Button) view.findViewById(R.id.Size_Picker);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 size = current;
-                Log.e("current",(String.valueOf(current)));
-                Log.e("size",(String.valueOf(size)));
+                Log.e("current", (String.valueOf(current)));
+                Log.e("size", (String.valueOf(size)));
 
 
             }
@@ -106,32 +104,18 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         seekBar.setOnSeekBarChangeListener(this);*/
 
 
-
-
-       /* mLayout = view.findViewById(R.id.Layout);
-        mDefaultColor = ContextCompat.getColor(new MainActivity(), R.color.ColorButton);
-        ButtonColor = (Button) view.findViewById(R.id.Color_Picker);
-        ButtonColor.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                openColorPicker();
-            }
-        });*/
-
-        textView =  (TextView) view.findViewById(R.id.seektext);
-        seekBar =  (SeekBar) view.findViewById(R.id.seekBar);
+        textView = (TextView) view.findViewById(R.id.seektext);
+        seekBar = (SeekBar) view.findViewById(R.id.seekBar);
         seekBar.setMax(max - min);
         seekBar.setProgress(current);
-        textView.setText(""+current);
-
+        textView.setText("" + current);
 
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                current = progress + min;
-                textView.setText(""+ current);
+                //current = progress + min;
+                textView.setText("" + current);
                 //textView.setText(""+String.valueOf(progress));
 
             }
@@ -150,13 +134,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         });
 
 
-
-
         return view;
 
     }
-
-
 
 
 }

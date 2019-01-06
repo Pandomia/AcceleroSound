@@ -2,60 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/Layout">
 
     <TextView
         android:id="@+id/seektext"
-        android:layout_width="66dp"
-        android:layout_height="wrap_content"
+        android:layout_width="113dp"
+        android:layout_height="40dp"
 
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="6dp"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="23dp"
         android:text=""
         android:textSize="18sp" />
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="295dp"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Size_Picker"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="34dp"
-        android:layout_toEndOf="@+id/seektext"
-         />
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="77dp"
+        android:layout_marginBottom="-46dp" />
+
     <Button
         android:id="@+id/Size_Picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/seekBar"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="21dp"
         android:onClick="onClickBtn_Size"
         android:text="Size" />
 
-    <Button
-        android:id="@+id/Color_Picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/seekBar"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="216dp"
-        android:layout_marginTop="165dp"
-        android:text="Button" />
-
     <FrameLayout
-        android:id="@+id/Layout"
-        android:layout_width="63dp"
-        android:layout_height="63dp"
-        android:layout_below="@+id/seekBar"
-        android:layout_alignBottom="@+id/Color_Picker"
+        android:layout_width="110dp"
+        android:layout_height="119dp"
+        android:layout_alignTop="@+id/Color_Picker"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="154dp"
-        android:layout_marginBottom="-4dp">
+        android:layout_marginStart="274dp"
+        android:layout_marginTop="138dp">
 
     </FrameLayout>
 
