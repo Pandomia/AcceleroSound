@@ -23,6 +23,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,11 +54,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-        bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
+        CallNav();
+
+
 
 
         /*//Toolbar toolbar = findViewById(R.id.toolbar);
@@ -112,13 +112,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    public BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item){
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
+               // FragmentManager fragmentManager = getSupportFragmentManager();
+                //FragmentTransaction transaction = fragmentManager.beginTransaction();
                 Fragment selectedFragment = null;
                 switch (item.getItemId()){
                     case R.id.nav_home:
@@ -167,6 +167,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }*/
+
+    public void CallNav(){
+
+
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new HomeFragment()).commit();
+
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -228,6 +240,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onPause();
         mSensorManager.unregisterListener(this);
         setContentView(R.layout.activity_main);
+        //getSupportFragmentManager().beginTransaction();
+        CallNav();
+
 
         inanimation = false;
 
