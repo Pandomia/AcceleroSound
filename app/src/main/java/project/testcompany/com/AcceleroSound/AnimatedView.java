@@ -164,57 +164,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
 
 
 
-       /* if (x <= 0 + CIRCLE_RADIUS) {
 
-
-            //ring.start();
-            color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-            x = 0 + CIRCLE_RADIUS;
-            x+=150;
-
-        }
-        if (x >= viewWidth - CIRCLE_RADIUS) {
-            color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-            ring.start();
-
-            x = viewWidth - CIRCLE_RADIUS;
-            x-  =150;
-
-
-        }
-        if (y <= 0 + CIRCLE_RADIUS) {
-            color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-            ring.start();
-            y = 0 + CIRCLE_RADIUS;
-            y +=150;
-
-
-        }
-        if (y >= viewHeight - CIRCLE_RADIUS) {
-            color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-
-            ring.start();
-
-            y = viewHeight - CIRCLE_RADIUS;
-
-            y -=150;*/
-
-
-
-        // y = (int)10f;
-
-        // y = y * 10;
-
-                /*for(int i = 0; i < 500; i++){
-
-                    y;
-                }*/
-        //y-=100;
-
-
-        //  }
     }
 
     @Override

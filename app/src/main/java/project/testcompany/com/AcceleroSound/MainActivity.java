@@ -55,38 +55,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor mAccelerometer;
     private AnimatedView mAnimatedView = null;
     private static final String FILE_RADIUS = "radiusball.txt";
-
-   // public  boolean  inanimation = false;
-
-
-    /*public void onClickBrn_Size(Context ctx) {
-        int RadiusBall= SettingsFragment.current;
-        FileOutputStream Fos=null;
+    private String Default = "100,5";
 
 
-        try {
-            Fos = ctx.openFileOutput(FILE_RADIUS,Context.MODE_PRIVATE);
-            Fos.write(String.valueOf(RadiusBall).getBytes());
-
-            Toast.makeText(this, "Changes has been saved", Toast.LENGTH_SHORT).show();
-            Log.e("Dir", " i'mgay " + ctx.getFilesDir());
-            Log.e("Main" , String.valueOf(SettingsFragment.current));
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            if(Fos == null) {
-                try {
-                    Fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +65,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
+        try {
+            FileOutputStream fos = openFileOutput(FILE_RADIUS, Context.MODE_PRIVATE);
+            fos.write(Default.getBytes());
+            fos.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
-        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        */
+
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -111,18 +89,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mAnimatedView.ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
         mAnimatedView.DeathSound = MediaPlayer.create(MainActivity.this ,R.raw.roblox);
 
-        //Log.e("inanimation",(String.valueOf(mAnimatedView.inanimation)));
-        //Log.e("y-as",(String.valueOf(AnimatedView.y)));
-/*
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new SettingsFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_settings);
-        }*/
-        //View veranderen naar animated
-        //setContentView(mAnimatedView);
 
-        //SettingsFragment sharedpref = android.support.v7.preference.Preference
 
     }
 
@@ -183,11 +150,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             super.onBackPressed();
         }
 
-       /* if (gamePlaying) { //Idee om Back te fixen
-            stopGame();
-        } else {
-            super.onBackPressed();
-        }*/ //FRAGMENTS <-----!!!!
 
 
 
@@ -206,19 +168,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
-            String text,text2;
+            String text;
+            String SArray[];
+
 
             while ((text = br.readLine())  != null)
             {
-                sb.append(text);
+                sb.append(text).append(",");
 
 
             }
-            //Log.e("fuq",text);
-            Log.e("Button STart Clickeed", sb.toString());
-            //
+            SArray = sb.toString().split(",");
+
+            Log.d("Button STart Clickeed", sb.toString());
             //text2 = str.Spl sb.toString()
-            //mAnimatedView.CIRCLE_RADIUS = Integer.valueOf(sb.toString());
+
+            Log.d("buffer is mijn vriend" , SArray[0] + "  " + SArray[1]);
+
+            mAnimatedView.CIRCLE_RADIUS = Integer.valueOf(SArray[0]);
+            mAnimatedView.Velocity = Integer.valueOf(SArray[1]);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

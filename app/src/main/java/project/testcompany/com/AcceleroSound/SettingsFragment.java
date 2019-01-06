@@ -48,21 +48,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         int isize = size;
         int icolor = color;
     }
-/*
-3
 
-    @SuppressLint("ValidFragment")
-    public SettingsFragment (Context context){
-        this.context = context;
-    }
-
-    AnimatedView roll = new AnimatedView(context);
-
-    roll.*/
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
     }
 
@@ -96,7 +88,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             @Override
             public void onClick(View v) {
                 size = current;
-                context = getContext() ;
+                context = getContext();
                 int RadiusBall= current;
                 FileOutputStream Fos=null;
 
@@ -104,7 +96,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 try {
                     Fos = context.openFileOutput(FILE_RADIUS,Context.MODE_PRIVATE);
                     Fos.write(String.valueOf(RadiusBall).getBytes());
-                    Fos.write(String.valueOf( ",55").getBytes());
+                    Fos.write(",".getBytes());
+                    Fos.write(String.valueOf("1").getBytes());
 
                     Log.e("BanaaSaus", "NukeT4wn" + context.getFilesDir());
                     Log.e("Main" , String.valueOf(SettingsFragment.current));
@@ -138,16 +131,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
         });
-       /*{
-            @Override
-            public void onClick(View view){
-                size = current;
-            }
-        }
-        public void onClickBtn_Size(View view) {
-            size = current;
-        }
-        */
+
 
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
