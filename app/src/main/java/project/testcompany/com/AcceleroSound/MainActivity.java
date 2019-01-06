@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         super.onPause();
         mSensorManager.unregisterListener(this);
-        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
         inanimation = false;
 
