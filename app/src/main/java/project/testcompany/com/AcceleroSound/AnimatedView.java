@@ -151,7 +151,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
         else if(x < viewWidth/2 && y < viewHeight/2) {
             ring.start();
             CheckCorners();
-
+            //Log.e("speel","3");
         }
         else if(x > viewWidth/2 && y < viewHeight/2){
             DeathSound.start();
