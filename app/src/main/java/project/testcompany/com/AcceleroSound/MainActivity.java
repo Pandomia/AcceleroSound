@@ -35,6 +35,14 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Random;
 
 import project.testcompany.com.test1.R;
@@ -46,8 +54,39 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private AnimatedView mAnimatedView = null;
+    private static final String FILE_RADIUS = "radiusball.txt";
+
    // public  boolean  inanimation = false;
 
+
+    /*public void onClickBrn_Size(Context ctx) {
+        int RadiusBall= SettingsFragment.current;
+        FileOutputStream Fos=null;
+
+
+        try {
+            Fos = ctx.openFileOutput(FILE_RADIUS,Context.MODE_PRIVATE);
+            Fos.write(String.valueOf(RadiusBall).getBytes());
+
+            Toast.makeText(this, "Changes has been saved", Toast.LENGTH_SHORT).show();
+            Log.e("Dir", " i'mgay " + ctx.getFilesDir());
+            Log.e("Main" , String.valueOf(SettingsFragment.current));
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(Fos == null) {
+                try {
+                    Fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,6 +198,29 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mAnimatedView.inanimation = true;
         onResume();
         setContentView(mAnimatedView);
+
+        FileInputStream fis = null;
+
+        try {
+            fis = openFileInput(FILE_RADIUS);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+
+            while ((text = br.readLine()) != null)
+            {
+                sb.append(text);
+            }
+
+            Log.e("Button STart Clickeed", sb.toString());
+            mAnimatedView.CIRCLE_RADIUS = Integer.valueOf(sb.toString());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

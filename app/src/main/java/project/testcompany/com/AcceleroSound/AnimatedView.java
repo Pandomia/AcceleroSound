@@ -26,6 +26,8 @@ class AnimatedView extends View implements SettingsFragment.Settings{
         this.isize = SettingsFragment.Settings.isize;
     }*/
 
+
+
     int CIRCLE_RADIUS = SettingsFragment.Settings.isize; //50; //pixels, grootte van cirkel
 
     private Paint mPaint;

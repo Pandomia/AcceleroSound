@@ -18,8 +18,14 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.content.Context;
+import android.widget.Toast;
+import android.os.Environment;
 
 import org.w3c.dom.Text;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import project.testcompany.com.test1.R;
 import yuku.ambilwarna.AmbilWarnaDialog;
@@ -28,18 +34,16 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 public class SettingsFragment extends PreferenceFragmentCompat {
     TextView textView;
     SeekBar seekBar;
-    private Context context;
+    Context context;
+    private static final String FILE_RADIUS = "radiusball.txt";
 
-    static int min = 50, max = 200, current = 50;
+
+    static int min = 50, max = 200, current = 100;
 
     static int size = current;
 
     static int color = Color.BLUE;
 
-
-
-    // AnimatedView lol = new AnimatedView();
-    //lol.
     public interface Settings {
         int isize = size;
         int icolor = color;
@@ -69,11 +73,22 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     }
 
+
+
+
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        textView = (TextView) view.findViewById(R.id.seektext);
+        seekBar = (SeekBar) view.findViewById(R.id.seekBar);
+        seekBar.setMax(max - min);
+        seekBar.setProgress(current);
+        textView.setText("" + current);
+
+
 
 
         Button btn1 = (Button) view.findViewById(R.id.Size_Picker);
@@ -81,11 +96,47 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             @Override
             public void onClick(View v) {
                 size = current;
+                context = getContext() ;
+                int RadiusBall= current;
+                FileOutputStream Fos=null;
+
+
+                try {
+                    Fos = context.openFileOutput(FILE_RADIUS,Context.MODE_PRIVATE);
+                    Fos.write(String.valueOf(RadiusBall).getBytes());
+
+
+                    Log.e("BanaaSaus", " i'mgay " + context.getFilesDir());
+                    Log.e("Main" , String.valueOf(SettingsFragment.current));
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    if(Fos == null) {
+                        try {
+                            Fos.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+
+
+
+                //FoS = openFileOutput(FILE_RADIUS, MODE_PRIVATE);
+
                 Log.e("current", (String.valueOf(current)));
                 Log.e("size", (String.valueOf(size)));
 
 
             }
+
+
+
         });
        /*{
             @Override
@@ -98,23 +149,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
         */
 
-        /*SeekBar seekBar = (SeekBar) view.findViewById(R.id.seekBar);
-        textview = (TextView) view.findViewById(R.id.seektext);
-
-        seekBar.setOnSeekBarChangeListener(this);*/
-
-
-        textView = (TextView) view.findViewById(R.id.seektext);
-        seekBar = (SeekBar) view.findViewById(R.id.seekBar);
-        seekBar.setMax(max - min);
-        seekBar.setProgress(current);
-        textView.setText("" + current);
-
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //current = progress + min;
+                current = progress;
                 textView.setText("" + current);
                 //textView.setText(""+String.valueOf(progress));
 
@@ -137,6 +176,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         return view;
 
     }
+
 
 
 }
