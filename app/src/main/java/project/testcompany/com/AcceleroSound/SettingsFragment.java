@@ -104,9 +104,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 try {
                     Fos = context.openFileOutput(FILE_RADIUS,Context.MODE_PRIVATE);
                     Fos.write(String.valueOf(RadiusBall).getBytes());
+                    Fos.write(String.valueOf( ",55").getBytes());
 
-
-                    Log.e("BanaaSaus", " i'mgay " + context.getFilesDir());
+                    Log.e("BanaaSaus", "NukeT4wn" + context.getFilesDir());
                     Log.e("Main" , String.valueOf(SettingsFragment.current));
 
                 } catch (FileNotFoundException e) {

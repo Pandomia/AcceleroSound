@@ -32,6 +32,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
 
     private Paint mPaint;
     private Paint LinePaint;
+    public int Velocity = 5;
     static public int x; //x location of the ball
     static public int y; //y location of the ball
     private int viewWidth;
@@ -127,8 +128,8 @@ class AnimatedView extends View implements SettingsFragment.Settings{
     }
 
     public void onSensorEvent (SensorEvent event) {
-        x = x - (int) event.values[0] *5;
-        y = y + (int) event.values[1] *5;
+        x = x - (int) event.values[0] *Velocity;
+        y = y + (int) event.values[1] *Velocity;
 
 
         if(x == viewHeight/2 && y == viewHeight/2) {

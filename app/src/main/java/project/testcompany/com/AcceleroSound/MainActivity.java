@@ -206,15 +206,19 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
-            String text;
+            String text,text2;
 
-            while ((text = br.readLine()) != null)
+            while ((text = br.readLine())  != null)
             {
                 sb.append(text);
+
+
             }
             //Log.e("fuq",text);
             Log.e("Button STart Clickeed", sb.toString());
-            mAnimatedView.CIRCLE_RADIUS = Integer.valueOf(sb.toString());
+            //
+            //text2 = str.Spl sb.toString()
+            //mAnimatedView.CIRCLE_RADIUS = Integer.valueOf(sb.toString());
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
