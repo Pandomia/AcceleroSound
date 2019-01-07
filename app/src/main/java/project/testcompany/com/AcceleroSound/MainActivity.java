@@ -16,6 +16,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         mAnimatedView.ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
         mAnimatedView.DeathSound = MediaPlayer.create(MainActivity.this ,R.raw.roblox);
+        mAnimatedView.Steve = MediaPlayer.create(MainActivity.this, R.raw.minecraft);
 
 
 

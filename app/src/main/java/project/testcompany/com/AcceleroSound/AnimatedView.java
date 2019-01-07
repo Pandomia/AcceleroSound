@@ -42,6 +42,8 @@ class AnimatedView extends View implements SettingsFragment.Settings{
     public boolean inanimation = false;
     public MediaPlayer ring;
     public MediaPlayer DeathSound;
+    public MediaPlayer Steve;
+    public MediaPlayer Sound4;
 
 
     public AnimatedView(Context context) {
@@ -126,6 +128,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
         if(x == viewHeight/2 && y == viewHeight/2) {
             ring.stop();
             DeathSound.stop();
+            Steve.stop();
         }
         if(inanimation==false){
             //Doe niets
@@ -143,7 +146,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
             //Log.e("speel","2");
         }
         else if(x < viewWidth/2 && y < viewHeight/2) {
-            ring.start();
+            Steve.start();
             CheckCorners();
             //Log.e("speel","3");
         }
