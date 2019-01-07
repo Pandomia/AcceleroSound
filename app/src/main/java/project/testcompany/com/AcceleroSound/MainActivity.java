@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                         break;
                     case R.id.nav_about:
-                        selectedFragment = new SettingsFragment();
+                        selectedFragment = new AboutFragment();
                         break;
                 }
 
