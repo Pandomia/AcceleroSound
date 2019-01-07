@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mAnimatedView.ring = MediaPlayer.create(MainActivity.this, R.raw.boom);
         mAnimatedView.DeathSound = MediaPlayer.create(MainActivity.this ,R.raw.roblox);
         mAnimatedView.Steve = MediaPlayer.create(MainActivity.this, R.raw.minecraft);
+        mAnimatedView.Undertale = MediaPlayer.create(MainActivity.this, R.raw.undertale);
 
 
 

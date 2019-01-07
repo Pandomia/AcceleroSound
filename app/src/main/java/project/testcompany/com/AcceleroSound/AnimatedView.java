@@ -43,7 +43,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
     public MediaPlayer ring;
     public MediaPlayer DeathSound;
     public MediaPlayer Steve;
-    public MediaPlayer Sound4;
+    public MediaPlayer Undertale;
 
 
     public AnimatedView(Context context) {
@@ -151,7 +151,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
             //Log.e("speel","3");
         }
         else if(x > viewWidth/2 && y < viewHeight/2){
-            DeathSound.start();
+            Undertale.start();
             CheckCorners();
             //Log.e("speel","4");
         }
