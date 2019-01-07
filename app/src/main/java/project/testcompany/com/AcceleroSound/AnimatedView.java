@@ -32,7 +32,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
 
     private Paint mPaint;
     private Paint LinePaint;
-    public int Velocity = 5;
+    public int Velocity = SettingsFragment.Settings.iSpeed; // speed
     static public int x; //x location of the ball
     static public int y; //y location of the ball
     private int viewWidth;

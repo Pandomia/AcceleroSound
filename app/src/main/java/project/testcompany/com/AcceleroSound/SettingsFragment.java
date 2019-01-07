@@ -27,25 +27,31 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import project.testcompany.com.test1.R;
+import project.testcompany.com.AcceleroSound.R;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 
 public class SettingsFragment extends PreferenceFragmentCompat {
     TextView textView;
     SeekBar seekBar;
+
+    TextView speedText;
+    SeekBar speedBar;
+
     Context context;
     private static final String FILE_RADIUS = "radiusball.txt";
 
 
-    static int min = 50, max = 200, current = 100;
+    static int minSize = 50, maxSize = 200, currentSize = 100;
+    static int minSpeed = 1, maxSpeed = 8, currentSpeed = 5;
 
-    static int size = current;
-
+    static int size = currentSize;
+    static int speed = currentSpeed;
     static int color = Color.BLUE;
 
     public interface Settings {
         int isize = size;
+        int iSpeed = speed;
         int icolor = color;
     }
 
@@ -76,9 +82,20 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         textView = (TextView) view.findViewById(R.id.seektext);
         seekBar = (SeekBar) view.findViewById(R.id.seekBar);
-        seekBar.setMax(max - min);
-        seekBar.setProgress(current);
-        textView.setText("" + current);
+
+        speedText = view.findViewById(R.id.speedText);
+        speedBar = view.findViewById(R.id.speedBar);
+
+        seekBar.setMin(minSize);
+        seekBar.setMax(maxSize);
+        seekBar.setProgress(currentSize);
+        textView.setText(currentSize + "px");
+
+        speedBar.setMin(minSpeed);
+        speedBar.setMax(maxSpeed);
+        speedBar.setProgress(currentSpeed);
+        speedText.setText(currentSpeed + "x");
+
 
 
 
@@ -87,9 +104,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                size = current;
+                size = currentSize;
+                speed = currentSpeed;
                 context = getContext();
-                int RadiusBall= current;
+                int RadiusBall= currentSize;
+                int SpeedBall = currentSpeed;
                 FileOutputStream Fos=null;
 
 
@@ -97,10 +116,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     Fos = context.openFileOutput(FILE_RADIUS,Context.MODE_PRIVATE);
                     Fos.write(String.valueOf(RadiusBall).getBytes());
                     Fos.write(",".getBytes());
-                    Fos.write(String.valueOf("1").getBytes());
+                    Fos.write(String.valueOf(SpeedBall).getBytes());
 
                     Log.e("BanaaSaus", "NukeT4wn" + context.getFilesDir());
-                    Log.e("Main" , String.valueOf(SettingsFragment.current));
+                    Log.e("Main" , String.valueOf(SettingsFragment.currentSize));
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -122,7 +141,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
                 //FoS = openFileOutput(FILE_RADIUS, MODE_PRIVATE);
 
-                Log.e("current", (String.valueOf(current)));
+                Log.e("current", (String.valueOf(currentSize)));
                 Log.e("size", (String.valueOf(size)));
 
 
@@ -137,8 +156,30 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                current = progress;
-                textView.setText("" + current);
+                currentSize = progress;
+                textView.setText(currentSize + "px");
+                //textView.setText(""+String.valueOf(progress));
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+
+
+        });
+
+        speedBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                currentSpeed = progress;
+                speedText.setText(currentSpeed+"x");
                 //textView.setText(""+String.valueOf(progress));
 
             }
@@ -157,9 +198,13 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         });
 
 
+
+
         return view;
 
     }
+
+
 
 
 
