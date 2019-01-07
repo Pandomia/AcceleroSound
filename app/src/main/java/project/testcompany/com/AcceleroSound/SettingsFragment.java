@@ -41,18 +41,20 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     Context context;
     private static final String FILE_RADIUS = "radiusball.txt";
 
+    Button colorPicker;
+    int defColor;
 
     static int minSize = 50, maxSize = 200, currentSize = 100;
     static int minSpeed = 1, maxSpeed = 8, currentSpeed = 5;
 
     static int size = currentSize;
     static int speed = currentSpeed;
-    static int color = Color.BLUE;
+    static int ballColor = 0xff0000ff;//Color.BLUE;
 
     public interface Settings {
-        int isize = size;
+        int iSize = size;
         int iSpeed = speed;
-        int icolor = color;
+        int iColor = ballColor;
     }
 
 
@@ -86,6 +88,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         speedText = view.findViewById(R.id.speedText);
         speedBar = view.findViewById(R.id.speedBar);
 
+        colorPicker = (Button) view.findViewById(R.id.color_picker);
+
         seekBar.setMin(minSize);
         seekBar.setMax(maxSize);
         seekBar.setProgress(currentSize);
@@ -97,6 +101,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         speedText.setText(currentSpeed + "x");
 
 
+        colorPicker.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                openColorPicker();
+
+            }
+        });
 
 
 
@@ -109,6 +121,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 context = getContext();
                 int RadiusBall= currentSize;
                 int SpeedBall = currentSpeed;
+                String ColorBall = String.valueOf(ballColor);
                 FileOutputStream Fos=null;
 
 
@@ -117,6 +130,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     Fos.write(String.valueOf(RadiusBall).getBytes());
                     Fos.write(",".getBytes());
                     Fos.write(String.valueOf(SpeedBall).getBytes());
+                    Fos.write(",".getBytes());
+                    Fos.write(String.valueOf(ColorBall).getBytes());
+
 
                     Log.e("BanaaSaus", "NukeT4wn" + context.getFilesDir());
                     Log.e("Main" , String.valueOf(SettingsFragment.currentSize));
@@ -200,10 +216,28 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
 
+
+
         return view;
 
     }
 
+
+    public void openColorPicker(){
+        AmbilWarnaDialog cPicker = new AmbilWarnaDialog(getActivity(), ballColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+            @Override
+            public void onCancel(AmbilWarnaDialog dialog) {
+
+            }
+
+            @Override
+            public void onOk(AmbilWarnaDialog dialog, int color) {
+                ballColor = color;
+            }
+        });
+        cPicker.show();
+
+    }
 
 
 

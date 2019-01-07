@@ -6,6 +6,10 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,6 +22,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -45,7 +50,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Random;
 
-import project.testcompany.com.test1.R;
 
 
 
@@ -55,7 +59,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor mAccelerometer;
     private AnimatedView mAnimatedView = null;
     private static final String FILE_RADIUS = "radiusball.txt";
-    private String Default = "100,5";
+    private String Default = "100,5,-16776961";
+
 
 
 
@@ -64,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
+
+
+
 
         try {
             FileOutputStream fos = openFileOutput(FILE_RADIUS, Context.MODE_PRIVATE);
@@ -178,15 +187,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
             }
-            SArray = sb.toString().split(",");
+            SArray = sb.toString().split("," );
 
             Log.d("Button STart Clickeed", sb.toString());
             //text2 = str.Spl sb.toString()
 
-            Log.d("buffer is mijn vriend" , SArray[0] + "  " + SArray[1]);
+            Log.d("buffer is mijn vriend" , SArray[0] + "  " + SArray[1]+ "  " +mAnimatedView.color);
 
             mAnimatedView.CIRCLE_RADIUS = Integer.valueOf(SArray[0]);
             mAnimatedView.Velocity = Integer.valueOf(SArray[1]);
+            mAnimatedView.color  = Integer.valueOf( SArray[2]);
+
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

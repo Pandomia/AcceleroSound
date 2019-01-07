@@ -28,7 +28,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
 
 
 
-    int CIRCLE_RADIUS = SettingsFragment.Settings.isize; //50; //pixels, grootte van cirkel
+    int CIRCLE_RADIUS = SettingsFragment.Settings.iSize; //50; //pixels, grootte van cirkel
 
     private Paint mPaint;
     private Paint LinePaint;
@@ -37,7 +37,7 @@ class AnimatedView extends View implements SettingsFragment.Settings{
     static public int y; //y location of the ball
     private int viewWidth;
     private int viewHeight;
-    private int color = SettingsFragment.Settings.icolor;//Color.RED;
+    public int color = SettingsFragment.Settings.iColor;//Color.RED;
     private boolean Start = false;
     public boolean inanimation = false;
     public MediaPlayer ring;
