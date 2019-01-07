@@ -88,23 +88,23 @@ class AnimatedView extends View implements SettingsFragment.Settings{
 
     private void CheckCorners()
     {
-        if(x <=0){
+        if(x -CIRCLE_RADIUS<=0){
             x = 0 + CIRCLE_RADIUS ;
                 /*for(int i = 0;i < 151;i++)
                 {
                     x+=i;
                 }*/
         }
-        if(y<=0)
+        if(y -CIRCLE_RADIUS<=0)
         {
             y = 0 + CIRCLE_RADIUS;
 
         }
-        if(x >=viewWidth){
+        if(x +CIRCLE_RADIUS>=viewWidth){
             x = viewWidth - CIRCLE_RADIUS;
 
         }
-        if(y >=viewHeight)
+        if(y +CIRCLE_RADIUS >=viewHeight)
         {
             y = viewHeight - CIRCLE_RADIUS;
         }
