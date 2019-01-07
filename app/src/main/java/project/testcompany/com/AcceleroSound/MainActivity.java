@@ -109,8 +109,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item){
 
-               // FragmentManager fragmentManager = getSupportFragmentManager();
-                //FragmentTransaction transaction = fragmentManager.beginTransaction();
+
                 Fragment selectedFragment = null;
                 switch (item.getItemId()){
                     case R.id.nav_home:

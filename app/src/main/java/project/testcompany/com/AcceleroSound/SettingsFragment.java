@@ -31,7 +31,7 @@ import project.testcompany.com.AcceleroSound.R;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 
-public class SettingsFragment extends PreferenceFragmentCompat {
+public class SettingsFragment extends Fragment {
     TextView textView;
     SeekBar seekBar;
 
@@ -65,16 +65,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
 
     }
-
-    @Override
-    public void onCreatePreferences(Bundle bundle, String s) {
-        //setPreferencesFromResource(R.xml.preferences, s);
-
-
-    }
-
-
-
 
     @Nullable
     @Override

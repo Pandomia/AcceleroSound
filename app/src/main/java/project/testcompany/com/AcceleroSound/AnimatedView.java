@@ -43,15 +43,6 @@ class AnimatedView extends View implements SettingsFragment.Settings{
     public MediaPlayer ring;
     public MediaPlayer DeathSound;
 
-    private Random rnd = new Random();
-/*
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }*/
 
     public AnimatedView(Context context) {
         super(context);
@@ -192,8 +183,6 @@ class AnimatedView extends View implements SettingsFragment.Settings{
 
 
         canvas.drawCircle(x, y, CIRCLE_RADIUS, mPaint);
-
-        //We need to call invalidate each time, so that the view continuously draws
 
         //canvas.drawLine();
         //Invalidate zodat het "loopt"
